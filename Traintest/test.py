@@ -32,7 +32,7 @@ if __name__ == "__main__":
   modelname = config["load"]["model_name"] 
   
   loadpath = os.path.join(config["load"]["load_path"])
-  device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+  device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
   savepath = os.path.join(loadpath, f"checkpoint")
   
@@ -49,7 +49,7 @@ if __name__ == "__main__":
   for saveiter in range(begin, end+step, step):
     print("Model building")
     net = model.GazeStatic()
-    statedict = torch.load(os.path.join(savepath, f"Iter_{saveiter}_{modelname}.pt"), map_location={"cuda:0":"cuda:1"})
+    statedict = torch.load(os.path.join(savepath, f"Iter_{saveiter}_{modelname}.pt"), map_location={"cuda:0":"cuda:0"})
 
     net.to(device)
     net.load_state_dict(statedict)

@@ -1,30 +1,30 @@
 ---
 train:
   params:
-    batch_size: 80
-    epoch: 100
+    batch_size: 64
+    epoch: 20
     lr: 0.0001
     decay: 1
     decay_step: 5000
     loss: Pinball
   save:
-    save_path: "/home/cyh/GazeBenchmark/exp/Implementation/Gaze360-gaze360"
+    save_path: "/root/autodl-tmp/Gaze360/model/Gaze-gaze360/trainOnGaze360"
     model_name: Gaze360
     step: 10
   data:
-    image: "/home/cyh/GazeDataset20200519/FaceBased/Gaze360/Image"
-    label: "/home/cyh/GazeDataset20200519/FaceBased/Gaze360/Label/train.label"
+    image: "/root/autodl-tmp/Gaze360_normalized/Image"
+    label: "/root/autodl-tmp/Gaze360_normalized/Label/train.label"
   pretrains: "None"
 test:
    load:
-      begin_step: 10
-      end_step: 60
-      steps: 10
-      load_path: "/home/cyh/GazeBenchmark/exp/Implementation/Gaze360-gaze360"
+      begin_step: 20
+      end_step: 20
+      steps: 5
+      load_path: "/root/autodl-tmp/Gaze360/model/Gaze-gaze360/trainOnGaze360"
       model_name: Gaze360
    data:
-      image: "/home/cyh/GazeDataset20200519/FaceBased/Gaze360/Image"
-      label: "/home/cyh/GazeDataset20200519/FaceBased/Gaze360/Label/val.label"
+      image: "/root/autodl-tmp/Gaze360_normalized/Image"
+      label: "/root/autodl-tmp/Gaze360_normalized/Label/test.label"
 cross:
   save_name: cross-mpii-new
   load:

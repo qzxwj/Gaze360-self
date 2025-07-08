@@ -1,0 +1,28 @@
+---
+train:
+  params:
+    batch_size: 64
+    epoch: 20
+    lr: 0.0001
+    decay: 1
+    decay_step: 5000
+    loss: Pinball
+  save:
+    save_path: "/root/autodl-tmp/Gaze360/model/Gaze-gaze360/trainOnMpii"
+    model_name: weight
+    step: 5
+  data:
+    image: "/root/autodl-tmp/MPIIFaceGaze_normalized/Image/Train"
+    label: "/root/autodl-tmp/MPIIFaceGaze_normalized/Label/Train"
+  pretrains: "None"
+test:
+   load:
+      begin_step: 20
+      end_step: 20
+      steps: 5
+      load_path: "/root/autodl-tmp/Gaze360/model/Gaze-gaze360/trainOnMpii"
+      model_name: weight
+   data:
+      image: "/root/autodl-tmp/MPIIFaceGaze_normalized/Image/Test"
+      label: "/root/autodl-tmp/MPIIFaceGaze_normalized/Label/Test"
+reader: reader_mpii

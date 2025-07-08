@@ -1,0 +1,45 @@
+---
+train:
+  params:
+    batch_size: 64
+    epoch: 20
+    lr: 0.0001
+    decay: 1
+    decay_step: 5000
+    loss: Pinball
+  save:
+    save_path: "/root/autodl-tmp/Gaze360/model/Gaze-gaze360/trainOnGaze360"
+    model_name: Gaze360
+    step: 10
+  data:
+    image: "/root/autodl-tmp/Gaze360_normalized/Image"
+    label: "/root/autodl-tmp/Gaze360_normalized/Label/train.label"
+  pretrains: "None"
+test:
+   load:
+      begin_step: 20
+      end_step: 20
+      steps: 5
+      load_path: "/root/autodl-tmp/Gaze360/model/Gaze-gaze360/trainOnGaze360"
+      model_name: Gaze360
+   data:
+      image: "/root/autodl-tmp/Gaze360_normalized/Image"
+      label: "/root/autodl-tmp/Gaze360_normalized/Label/test.label"
+cross:
+  save_name: cross-mpii-new
+  load:
+      begin_step: 60
+      end_step: 60
+      steps: 10
+      load_path: "/home/cyh/GazeBenchmark/exp/Implementation/Gaze360-gaze360"
+      load_name: False
+      model_name: Gaze360
+  data:
+      image: "/home/cyh/GazeDataset20200519/FaceBased/MPIIFaceGaze/Image"
+      label: "/home/cyh/GazeDataset20200519/FaceBased/MPIIFaceGaze/Label"
+
+#  image: "/home/cyh/GazeDataset20200519/FaceBased/EyeDiap/Image"
+# label: "/home/cyh/GazeDataset20200519/FaceBased/EyeDiap/ClusterLabel"
+
+reader: reader_gaze360
+device: 0
